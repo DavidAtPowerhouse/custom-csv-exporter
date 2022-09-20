@@ -2,7 +2,7 @@
   <h2>Custom CSV Exporter Settings</h2>
   <form method="post" action="options.php">
     <?php @settings_fields('wp_ccsve-group'); ?>
-    <?php @do_settings_fields('wp_ccsve-group'); ?>
+    <?php @do_settings_fields('wp_ccsve-group', 'wp_ccsve_template-section'); ?>
 
     <?php do_settings_sections('wp_ccsve_template'); ?>
 
