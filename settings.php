@@ -99,7 +99,7 @@ if(!class_exists('WP_CCSVE_Settings'))
           $ccsve_std_fields_num = count($fields);
           echo '<select multiple="multiple" size="'.$ccsve_std_fields_num.'" name="ccsve_std_fields[selectinput][]">';
           foreach ($fields as $field) {
-            if (in_array($field, $ccsve_std_fields['selectinput'])){
+            if (is_array($ccsve_std_fields) && in_array($field, $ccsve_std_fields['selectinput'])){
               echo '\n\t<option selected="selected" value="'. $field . '">'.$field.'</option>';
             } else {
               echo '\n\t\<option value="'.$field .'">'.$field.'</option>'; }
@@ -114,7 +114,7 @@ if(!class_exists('WP_CCSVE_Settings'))
           $ccsve_tax_terms_num = count($object_tax);
           echo '<select multiple="multiple" size="'.$ccsve_tax_terms_num.'" name="ccsve_tax_terms[selectinput][]">';
           foreach ($object_tax as $tax) {
-            if (in_array($tax, $ccsve_tax_terms['selectinput'])){
+            if (is_array($ccsve_tax_terms) && in_array($tax, $ccsve_tax_terms['selectinput'])){
               echo '\n\t<option selected="selected" value="'. $tax . '">'.$tax.'</option>';
             } else {
               echo '\n\t\<option value="'.$tax .'">'.$tax.'</option>'; }
@@ -129,11 +129,11 @@ if(!class_exists('WP_CCSVE_Settings'))
           $ccsve_meta_keys_num = count($meta_keys);
           echo '<select multiple="multiple" size="'.$ccsve_meta_keys_num.'" name="ccsve_custom_fields[selectinput][]">';
           foreach ($meta_keys as $meta_key) {
-            if (in_array($meta_key, $ccsve_custom_fields['selectinput'])){
+            if (is_array($ccsve_custom_fields) && in_array($meta_key, $ccsve_custom_fields['selectinput'])){
               echo '\n\t<option selected="selected" value="'. $meta_key . '">'.$meta_key.'</option>';
             } else {
               echo '\n\t\<option value="'.$meta_key .'">'.$meta_key.'</option>'; }
-        } // END public function settings_field_input_text($args)
+         } // END public function settings_field_input_text($args)
 
         /**
          * add a menu
