@@ -35,16 +35,18 @@ function ccsve_generate(){
   }
                   // get the custom field values for each instance of the custom post type
   $ccsve_generate_post_values = get_post_custom($post->ID);
-  foreach ($ccsve_generate_custom_fields['selectinput'] as $key) {
+  if(is_array($ccsve_generate_custom_fields)){
+    foreach ($ccsve_generate_custom_fields['selectinput'] as $key) {
          // check if each custom field value matches a custom field that is being exported
-   if (array_key_exists($key, $ccsve_generate_post_values)) {
+     if (array_key_exists($key, $ccsve_generate_post_values)) {
           // if the the custom fields match, save them to the array of custom field values
-     $ccsve_generate_value_arr[$key][$i] = $ccsve_generate_post_values[$key]['0'];
+       $ccsve_generate_value_arr[$key][$i] = $ccsve_generate_post_values[$key]['0'];
 
    }
-
+  }
  }
      // get custom taxonomy information
+if(is_array($ccsve_generate_tax_terms)){ 
  foreach($ccsve_generate_tax_terms['selectinput'] as $tax) {
    $names = array();
    $terms = wp_get_object_terms($post->ID, $tax);
@@ -53,9 +55,11 @@ function ccsve_generate(){
   }
   $ccsve_generate_value_arr[$tax][$i] = implode(',', $names);
 }
+}
 $i++;
 
 endforeach;
+
   // create a new array of values that reorganizes them in a new multidimensional array where each sub-array contains all of the values for one custom post instance
 $ccsve_generate_value_arr_new = array();
 
